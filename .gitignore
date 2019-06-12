@@ -33,3 +33,7 @@
 
 site/images/
 /PlotJugglerInstaller
+
+# eclipse
+.project
+.cproject
