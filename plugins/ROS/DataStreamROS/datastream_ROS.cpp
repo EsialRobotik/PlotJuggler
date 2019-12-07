@@ -68,25 +68,26 @@ void DataStreamROS::topicCallback(const topic_tools::ShapeShifter::ConstPtr& msg
     ros::serialization::OStream stream(buffer.data(), buffer.size());
     msg->write(stream);
 
+    _ros_parser.setUseHeaderStamp( _config.use_header_stamp );
+
     double msg_time = ros::Time::now().toSec();
+    if( msg_time == 0)
+    {
+      // corner case: use_sim_time == true but topic /clock is not published
+      msg_time = ros::WallTime::now().toSec();
+      _ros_parser.setUseHeaderStamp( false );
+    }
 
     if( msg_time < _prev_clock_time )
     {
-        // clean
+        // clear
         for (auto& it: dataMap().numeric ) {
             it.second.clear();
-            auto dst = _destination_data->numeric.find(it.first);
-            if( dst != _destination_data->numeric.end()){
-                dst->second.clear();
-            }
         }
         for (auto& it: dataMap().user_defined ){
             it.second.clear();
-            auto dst = _destination_data->user_defined.find(it.first);
-            if( dst != _destination_data->user_defined.end()){
-                dst->second.clear();
-            }
         }
+        emit clearBuffers();
     }
     _prev_clock_time = msg_time;
 
@@ -355,8 +356,6 @@ bool DataStreamROS::start(QStringList* selected_datasources)
 
     saveDefaultSettings();
 
-    _ros_parser.setUseHeaderStamp( _config.use_header_stamp );
-
     if( _config.use_renaming_rules )
     {
         _ros_parser.addRules( RuleEditing::getRenamingRules() );
@@ -445,9 +444,6 @@ bool DataStreamROS::xmlLoadState(const QDomElement &parent_element)
 void DataStreamROS::addActionsToParentMenu(QMenu *menu)
 {
     _action_saveIntoRosbag = new QAction(QString("Save cached value in a rosbag"), menu);
-    QIcon iconSave;
-    iconSave.addFile(QStringLiteral(":/icons/resources/light/save.png"), QSize(26, 26));
-    _action_saveIntoRosbag->setIcon(iconSave);
     menu->addAction( _action_saveIntoRosbag );
 
     connect( _action_saveIntoRosbag, &QAction::triggered, this, [this]()

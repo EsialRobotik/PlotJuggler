@@ -2,12 +2,40 @@
 #include <QEvent>
 #include <QMouseEvent>
 #include <QWheelEvent>
+#include <QPainter>
+#include "qwt_legend_data.h"
+#include "qwt_graphic.h"
+#include "qwt_text.h"
 
+PlotLegend::PlotLegend(QwtPlot *parent):
+    _parent_plot(parent),
+    _collapsed(false)
+{
+    setRenderHint( QwtPlotItem::RenderAntialiased );
+
+    setMaxColumns( 1 );
+    setAlignmentInCanvas( Qt::Alignment( Qt::AlignTop | Qt::AlignRight ) );
+    setBackgroundMode( QwtPlotLegendItem::BackgroundMode::LegendBackground   );
+
+    setBorderRadius( 2 );
+    setMargin( 2 );
+    setSpacing( 1 );
+    setItemMargin( 2 );
+
+    QFont font = this->font();
+    font.setPointSize( 9 );
+    setFont( font );
+    setVisible( true );
+
+    setBackgroundBrush(QBrush( QColor(122,122,122,40), Qt::SolidPattern));
+
+    this->attach(parent);
+}
 
 QRectF PlotLegend::hideButtonRect() const
 {
     auto canvas_rect = _parent_plot->canvas()->rect();
-    if( alignment() & Qt::AlignRight)
+    if( alignmentInCanvas() & Qt::AlignRight)
     {
         return QRectF( geometry(canvas_rect).topRight(), QSize(8,-8) );
     }
@@ -17,7 +45,7 @@ QRectF PlotLegend::hideButtonRect() const
 void PlotLegend::draw(QPainter *painter, const QwtScaleMap &xMap,
                       const QwtScaleMap &yMap,
                       const QRectF &rect) const
-{
+{ 
     if( !_collapsed )
     {
         QwtPlotLegendItem::draw(painter, xMap, yMap, rect);
@@ -29,18 +57,14 @@ void PlotLegend::draw(QPainter *painter, const QwtScaleMap &xMap,
     {
         painter->save();
 
-        auto col = _collapsed ? Qt::black : Qt::white;
-        painter->setPen( col );
-        painter->setBrush( QBrush(col, Qt::SolidPattern) );
+        painter->setPen(  Qt::white );
+        painter->setBrush( QBrush( Qt::white, Qt::SolidPattern) );
         painter->drawRect( iconRect );
 
         QPen black_pen (Qt::black);
         black_pen.setWidth(2);
         painter->setPen( black_pen );
-//        painter->drawLine( iconRect.topLeft(), iconRect.bottomRight() );
-//        painter->drawLine( iconRect.topRight(), iconRect.bottomLeft() );
         painter->drawEllipse( iconRect );
-
         painter->restore();
     }
 }
@@ -80,7 +104,10 @@ void PlotLegend::drawLegendData( QPainter *painter,
         auto pen = textPen();
         if( !plotItem->isVisible() )
         {
-            pen.setColor( Qt::gray );
+            pen.setColor( QColor(122,122,122) );
+        }
+        else{
+            pen.setColor( _parent_plot->canvas()->palette().foreground().color() );
         }
         painter->setPen( pen );
         painter->setFont( font() );
@@ -100,7 +127,7 @@ bool PlotLegend::processWheelEvent(QWheelEvent* mouse_event)
         if( legend_rect.contains( mouse_event->pos()) )
         {
             int point_size = font().pointSize();
-            if( mouse_event->delta() > 0 && point_size < 14)
+            if( mouse_event->delta() >  0 && point_size < 14)
             {
                 emit legendSizeChanged(point_size+1);
             }
@@ -113,6 +140,22 @@ bool PlotLegend::processWheelEvent(QWheelEvent* mouse_event)
     }
     return false;
 }
+
+void PlotLegend::drawBackground( QPainter *painter, const QRectF &rect ) const
+{
+    painter->save();
+
+    auto pen = textPen();
+    pen.setColor( _parent_plot->canvas()->palette().foreground().color() );
+
+    painter->setPen( pen );
+    painter->setBrush( backgroundBrush() );
+    const double radius = borderRadius();
+    painter->drawRoundedRect( rect, radius, radius );
+
+    painter->restore();
+}
+
 
 const QwtPlotItem* PlotLegend::processMousePressEvent(QMouseEvent* mouse_event)
 {

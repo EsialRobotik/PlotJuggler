@@ -19,10 +19,6 @@
   <property name="windowTitle">
    <string>PlotJuggler</string>
   </property>
-  <property name="windowIcon">
-   <iconset resource="resource.qrc">
-    <normaloff>:/icons/resources/office_chart_line_stacked.png</normaloff>:/icons/resources/office_chart_line_stacked.png</iconset>
-  </property>
   <property name="styleSheet">
    <string notr="true"/>
   </property>
@@ -162,8 +158,8 @@
                 <string/>
                </property>
                <property name="icon">
-                <iconset resource="resource.qrc">
-                 <normaloff>:/icons/resources/light/settings_cog.png</normaloff>:/icons/resources/light/settings_cog.png</iconset>
+                <iconset>
+                 <normaloff>:/style_light/settings_cog.png</normaloff>:/style_light/settings_cog.png</iconset>
                </property>
                <property name="iconSize">
                 <size>
@@ -206,8 +202,8 @@
                 <string/>
                </property>
                <property name="icon">
-                <iconset resource="resource.qrc">
-                 <normaloff>:/icons/resources/light/line_tracker_1.png</normaloff>:/icons/resources/light/line_tracker_1.png</iconset>
+                <iconset>
+                 <normaloff>:/style_light/line_tracker_1.png</normaloff>:/style_light/line_tracker_1.png</iconset>
                </property>
                <property name="iconSize">
                 <size>
@@ -285,8 +281,8 @@
                   <string/>
                  </property>
                  <property name="icon">
-                  <iconset resource="resource.qrc">
-                   <normaloff>:/icons/resources/light/loop.png</normaloff>:/icons/resources/light/loop.png</iconset>
+                  <iconset>
+                   <normaloff>:/style_light/loop.png</normaloff>:/style_light/loop.png</iconset>
                  </property>
                  <property name="iconSize">
                   <size>
@@ -334,9 +330,9 @@
                   <string/>
                  </property>
                  <property name="icon">
-                  <iconset resource="resource.qrc">
-                   <normaloff>:/icons/resources/light/play_arrow.png</normaloff>
-                   <normalon>:/icons/resources/light/pause.png</normalon>:/icons/resources/light/play_arrow.png</iconset>
+                  <iconset>
+                   <normaloff>:/style_light/play_arrow.png</normaloff>
+                   <normalon>:/style_light/pause.png</normalon>:/style_light/play_arrow.png</iconset>
                  </property>
                  <property name="iconSize">
                   <size>
@@ -681,8 +677,8 @@
                 <string/>
                </property>
                <property name="icon">
-                <iconset resource="resource.qrc">
-                 <normaloff>:/icons/resources/light/datetime.png</normaloff>:/icons/resources/light/datetime.png</iconset>
+                <iconset>
+                 <normaloff>:/style_light/datetime.png</normaloff>:/style_light/datetime.png</iconset>
                </property>
                <property name="iconSize">
                 <size>
@@ -731,8 +727,8 @@
                 <string/>
                </property>
                <property name="icon">
-                <iconset resource="resource.qrc">
-                 <normaloff>:/icons/resources/light/grid.png</normaloff>:/icons/resources/light/grid.png</iconset>
+                <iconset>
+                 <normaloff>:/style_light/grid.png</normaloff>:/style_light/grid.png</iconset>
                </property>
                <property name="iconSize">
                 <size>
@@ -778,8 +774,8 @@
                 <string/>
                </property>
                <property name="icon">
-                <iconset resource="resource.qrc">
-                 <normaloff>:/icons/resources/light/ratio.png</normaloff>:/icons/resources/light/ratio.png</iconset>
+                <iconset>
+                 <normaloff>:/style_light/ratio.png</normaloff>:/style_light/ratio.png</iconset>
                </property>
                <property name="iconSize">
                 <size>
@@ -799,13 +795,6 @@
               </widget>
              </item>
             </layout>
-           </widget>
-          </item>
-          <item>
-           <widget class="Line" name="line">
-            <property name="orientation">
-             <enum>Qt::Horizontal</enum>
-            </property>
            </widget>
           </item>
          </layout>
@@ -871,6 +860,7 @@
     <addaction name="menuRecentLayout"/>
     <addaction name="actionSaveLayout"/>
     <addaction name="separator"/>
+    <addaction name="actionPreferences"/>
     <addaction name="actionExit"/>
    </widget>
    <widget class="QMenu" name="menuStreaming">
@@ -903,6 +893,7 @@
     </property>
     <addaction name="actionCheatsheet"/>
     <addaction name="actionSupportPlotJuggler"/>
+    <addaction name="actionShare_the_love"/>
     <addaction name="actionReportBug"/>
     <addaction name="separator"/>
     <addaction name="actionAbout"/>
@@ -974,11 +965,15 @@
    </property>
   </action>
   <action name="actionReportBug">
+   <property name="icon">
+    <iconset>
+     <normaloff>:/resources/github.png</normaloff>:/resources/github.png</iconset>
+   </property>
    <property name="text">
-    <string>Report a bug...</string>
+    <string>Report a problem</string>
    </property>
    <property name="toolTip">
-    <string>Report issue on Github</string>
+    <string>Report issue on GitHub</string>
    </property>
   </action>
   <action name="actionClearBuffer">
@@ -989,7 +984,7 @@
     <string>Ctrl+Shift+C</string>
    </property>
   </action>
-  <action name="actionFullscreen">
+  <!--action name="actionFullscreen">
    <property name="text">
     <string>Fullscreen mode</string>
    </property>
@@ -999,7 +994,7 @@
    <property name="shortcut">
     <string>F10</string>
    </property>
-  </action>
+  </action-->
   <action name="actionSaveAllPlotTabs">
    <property name="text">
     <string>Save all plot tabs as images</string>
@@ -1030,8 +1025,8 @@
   </action>
   <action name="actionClearRecentData">
    <property name="icon">
-    <iconset resource="resource.qrc">
-     <normaloff>:/icons/resources/light/clean_pane.png</normaloff>:/icons/resources/light/clean_pane.png</iconset>
+    <iconset>
+     <normaloff>:/style_light/clean_pane.png</normaloff>:/style_light/clean_pane.png</iconset>
    </property>
    <property name="text">
     <string>Clear</string>
@@ -1039,8 +1034,8 @@
   </action>
   <action name="actionClearRecentLayout">
    <property name="icon">
-    <iconset resource="resource.qrc">
-     <normaloff>:/icons/resources/light/clean_pane.png</normaloff>:/icons/resources/light/clean_pane.png</iconset>
+    <iconset>
+     <normaloff>:/style_light/clean_pane.png</normaloff>:/style_light/clean_pane.png</iconset>
    </property>
    <property name="text">
     <string>Clear</string>
@@ -1052,6 +1047,25 @@
    </property>
    <property name="shortcut">
     <string>Ctrl+Shift+X</string>
+   </property>
+  </action>
+  <action name="actionLoad_stylesheet">
+   <property name="text">
+    <string>Load stylesheet</string>
+   </property>
+  </action>
+  <action name="actionPreferences">
+   <property name="text">
+    <string>Preferences...</string>
+   </property>
+  </action>
+  <action name="actionShare_the_love">
+   <property name="icon">
+    <iconset>
+     <normaloff>:/resources/twitter.png</normaloff>:/resources/twitter.png</iconset>
+   </property>
+   <property name="text">
+    <string>Share the love</string>
    </property>
   </action>
  </widget>
@@ -1068,8 +1082,6 @@
    <header location="global">menubar.h</header>
   </customwidget>
  </customwidgets>
- <resources>
-  <include location="resource.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>

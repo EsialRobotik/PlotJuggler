@@ -9,12 +9,7 @@ class PlotLegend: public QObject, public QwtPlotLegendItem
 {
     Q_OBJECT
 public:
-    PlotLegend(QwtPlot* parent):
-        _parent_plot(parent),
-        _collapsed(false)
-    {
-        this->attach(parent);
-    }
+    PlotLegend(QwtPlot* parent);
 
     QRectF hideButtonRect() const;
 
@@ -31,6 +26,8 @@ private:
     virtual void drawLegendData( QPainter *painter,
         const QwtPlotItem *, const QwtLegendData &,
         const QRectF & ) const override;
+
+    virtual void drawBackground( QPainter *painter, const QRectF &rect ) const override;
 
     QwtPlot* _parent_plot;
     bool _collapsed;

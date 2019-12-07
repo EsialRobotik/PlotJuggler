@@ -52,6 +52,8 @@ public slots:
 
     static void saveTabImage(QString fileName, PlotMatrix* matrix);
 
+    void on_stylesheetChanged(QString style_dir);
+
 private slots:
 
     void on_renameCurrentTab();
@@ -101,6 +103,8 @@ private:
 
     const QString _name;
 
+    QMainWindow *_main_window;
+
     PlotDataMapRef& _mapped_data;
 
     bool _horizontal_link;
@@ -110,6 +114,8 @@ private:
     LabelStatus _labels_status;
 
     virtual void closeEvent(QCloseEvent *event) override;
+
+    void printPlotsNames();
 
 protected:
 
