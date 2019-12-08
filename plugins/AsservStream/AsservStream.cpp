@@ -12,6 +12,7 @@
 #include <QStringList>
 #include <QDir>
 #include <QMessageBox>
+#include <cmath>
 
 #define ASSERV_FREQ 500.0
 
@@ -56,6 +57,8 @@ AsservStream::AsservStream():_running(false),fd(-1)
 
 
 
+
+   std::lock_guard<std::mutex> lock( mutex() );
     foreach( const QString& name, words_list)
         dataMap().addNumeric(name.toStdString());
 }
@@ -69,7 +72,7 @@ bool AsservStream::openPort()
 	QStringList ttyListAbsolutePath;
 
 	QFileInfoList list = devDir.entryInfoList(QStringList() << "ttyACM*" ,QDir::System);
-	for (int i = 0; i < list.size(); i++)
+	for (int i = list.size()-1; i >= 0; i--)
 		ttyListAbsolutePath << list.at(i).absoluteFilePath();
 
 	QString device = QInputDialog::getItem(nullptr,
@@ -119,7 +122,7 @@ bool AsservStream::start(QStringList*)
 
 	if(ok)
 	{
-
+	    std::lock_guard<std::mutex> lock( mutex() );
 		// Insert dummy Point. it seems that there's a regression on plotjuggler, this dirty hack seems now necessary
 		for (auto& it: dataMap().numeric )
         {
@@ -165,7 +168,8 @@ void AsservStream::pushSingleCycle()
         for (auto& it: dataMap().numeric )
         {
         	double value = getValueFromName(it.first, sample);
-        	if(value == NAN)
+
+        	if(std::isnan(value))
         		value = 0;
 
             auto& plot = it.second;
@@ -180,8 +184,14 @@ void AsservStream::loop()
     while( _running  && fd != -1)
     {
     	uint8_t read_buffer[sizeof(UsbStreamSample)+4];
-        unsigned int  bytes_read = 0;
+        int  bytes_read = 0;
         bytes_read = read(fd,read_buffer,sizeof(read_buffer));
+
+        if(bytes_read < 1 )
+        {
+            emit connectionClosed();
+        	break;
+        }
 
         if(bytes_read > 0)
         	uartDecoder.processBytes(read_buffer,bytes_read );
