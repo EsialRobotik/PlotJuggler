@@ -10,7 +10,7 @@
 #include <fstream>
 #include "AsservStream_uartDecoder.h"
 
-
+class AsservStreamControlPanel;
 
 class  AsservStream: public DataStreamer
 {
@@ -49,6 +49,7 @@ private:
      bool _running;
      int fd;
      AsservStream_uartDecoder uartDecoder;
+     AsservStreamControlPanel *controlPanelWindows;
 };
 
 #endif // ASSERVSTREAM_H

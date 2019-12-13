@@ -4,11 +4,12 @@ add_definitions(${QT_DEFINITIONS})
 add_definitions(-DQT_PLUGIN)
 
 
-QT5_WRAP_UI ( UI_SRC  )
+QT5_WRAP_UI ( UI_SRC asservstreamcontrolpanel.ui )
 
 SET( SRC
     AsservStream_uartDecoder.cpp
     AsservStream.cpp
+    AsservStreamControlPanel.cpp
     ../../include/PlotJuggler/datastreamer_base.h
     )
     

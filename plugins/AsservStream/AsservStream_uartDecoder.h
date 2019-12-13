@@ -32,6 +32,7 @@ typedef struct
 	float value23;
 }  __attribute__((packed)) UsbStreamSample;
 
+
 class  AsservStream_uartDecoder
 {
 public:
@@ -53,6 +54,7 @@ private:
 
 	typedef void (AsservStream_uartDecoder::*stateFunction)(uint8_t byte);
 	stateFunction currentState;
+
 };
 
 #endif
