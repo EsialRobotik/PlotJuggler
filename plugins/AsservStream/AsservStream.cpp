@@ -148,6 +148,8 @@ void AsservStream::shutdown()
 {
     _running = false;
 
+    controlPanelWindows->close();
+
     if(fd != -1)
      close(fd);
 
