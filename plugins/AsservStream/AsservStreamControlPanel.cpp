@@ -66,7 +66,6 @@ void AsservStreamControlPanel::on_vitesse_droite_update_btn_clicked()
 	send(buffer, len);
 }
 
-
 void AsservStreamControlPanel::on_distance_update_btn_clicked()
 {
 	char buffer[128];
@@ -82,3 +81,63 @@ void AsservStreamControlPanel::on_angle_update_btn_clicked()
 	send(buffer, len);
 }
 
+void AsservStreamControlPanel::on_robot_speed_lin_cmd_btn_clicked()
+{
+	char buffer[128];
+	int len = sprintf(buffer, "asserv robotfwspeedstep %s %s",
+			ui_->robot_speed_lin_cmd->text().toStdString().c_str(),
+			ui_->speed_consign_duration->text().toStdString().c_str());
+	send(buffer, len);
+}
+
+void AsservStreamControlPanel::on_robot_speed_ang_cmd_btn_clicked()
+{
+	char buffer[128];
+	int len = sprintf(buffer, "asserv robotangspeedstep %s %s",
+			ui_->robot_speed_ang_cmd->text().toStdString().c_str(),
+			ui_->speed_consign_duration->text().toStdString().c_str());
+	send(buffer, len);
+}
+
+void AsservStreamControlPanel::on_left_whell_speed_cmd_btn_clicked()
+{
+	char buffer[128];
+	int len = sprintf(buffer, "asserv wheelspeedstep l %s %s",
+			ui_->left_wheel_speed_cmd->text().toStdString().c_str(),
+			ui_->speed_consign_duration->text().toStdString().c_str());
+	send(buffer, len);
+}
+
+void AsservStreamControlPanel::on_right_whell_speed_cmd_btn_clicked()
+{
+	char buffer[128];
+	int len = sprintf(buffer, "asserv wheelspeedstep r %s %s",
+			ui_->right_wheel_speed_cmd->text().toStdString().c_str(),
+			ui_->speed_consign_duration->text().toStdString().c_str());
+	send(buffer, len);
+}
+
+void AsservStreamControlPanel::on_pos_cmd_btn_clicked()
+{
+	char buffer[128];
+	int len = sprintf(buffer, "asserv adddist %s",
+			ui_->pos_cmd->text().toStdString().c_str());
+	send(buffer, len);
+}
+
+void AsservStreamControlPanel::on_angle_cmd_btn_clicked()
+{
+	char buffer[128];
+	int len = sprintf(buffer, "asserv addangle %s",
+			ui_->angle_cmd->text().toStdString().c_str());
+	send(buffer, len);
+}
+
+void AsservStreamControlPanel::on_goto_cmd_btn_clicked()
+{
+	char buffer[128];
+	int len = sprintf(buffer, "asserv addgoto %s %s",
+			ui_->goto_X->text().toStdString().c_str(),
+			ui_->goto_Y->text().toStdString().c_str());
+	send(buffer, len);
+}
