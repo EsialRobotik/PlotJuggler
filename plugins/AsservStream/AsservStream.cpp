@@ -13,6 +13,8 @@
 #include <QDir>
 #include <QMessageBox>
 #include <cmath>
+#include "ui_asservstreamcontrolpanel.h"
+#include "AsservStreamControlPanel.h"
 
 #define ASSERV_FREQ 500.0
 
@@ -55,12 +57,11 @@ AsservStream::AsservStream():_running(false),fd(-1)
 		<< "CommandManager_Y"
 		;
 
-
-
-
    std::lock_guard<std::mutex> lock( mutex() );
     foreach( const QString& name, words_list)
         dataMap().addNumeric(name.toStdString());
+
+    controlPanelWindows = nullptr;
 }
 
 
@@ -131,6 +132,10 @@ bool AsservStream::start(QStringList*)
         }   
 		_running = true;
 		_thread = std::thread([this](){ this->loop();} );
+
+		controlPanelWindows = new AsservStreamControlPanel(new Ui_AsservStreamControlPanel, fd);
+		controlPanelWindows->show();
+
 		return true;
 	}
 	else
@@ -154,6 +159,8 @@ bool AsservStream::isRunning() const { return _running; }
 AsservStream::~AsservStream()
 {
     shutdown();
+    if(controlPanelWindows != nullptr)
+    	delete(controlPanelWindows);
 }
 
 void AsservStream::pushSingleCycle()
