@@ -35,16 +35,16 @@ AsservStream::AsservStream():_running(false),fd(-1)
 		<<"speed_Right_OutputIntegrated"
 		<<"speed_Left_OutputIntegrated"
 
-		<<"speed_Right_LimitedGoal"
-		<<"speed_Left_LimitedGoal"
+		<<"angle_Regulator_Limited_Output"
+		<<"distance_Regulator_Limited_Output"
 
 		<< "angle_Regulator_Goal"
 		<< "angle_Regulator_Accumulator"
-		<< "angle_Regulator_output"
+		<< "angle_Regulator_Output"
 
 		<< "distance_Regulator_Goal"
 		<< "distance_Regulator_Accumulator"
-		<< "distance_Regulator_output"
+		<< "distance_Regulator_Output"
 
 		<<"raw_encoder_Right"
 		<<"raw_encoder_Left"
@@ -237,9 +237,9 @@ double AsservStream::getValueFromName(const  std::string &name, UsbStreamSample 
 		else if( name == "speed_Left_OutputIntegrated")
 			value = sample.value8;
 
-		else if( name == "speed_Right_LimitedGoal")
+		else if( name == "angle_Regulator_Limited_Output")
 			value = sample.value9;
-		else if( name == "speed_Left_LimitedGoal")
+		else if( name == "distance_Regulator_Limited_Output")
 			value = sample.value10;
 
 
@@ -247,14 +247,14 @@ double AsservStream::getValueFromName(const  std::string &name, UsbStreamSample 
 			value = sample.value11;
 		else if( name == "angle_Regulator_Accumulator")
 			value = sample.value12;
-		else if( name == "angle_Regulator_output")
+		else if( name == "angle_Regulator_Output")
 				value = sample.value13;
 
 		else if( name == "distance_Regulator_Goal")
 			value = sample.value14;
 		else if( name == "distance_Regulator_Accumulator")
 			value = sample.value15;
-		else if( name == "distance_Regulator_output")
+		else if( name == "distance_Regulator_Output")
 				value = sample.value16;
 
 		else if( name == "raw_encoder_Right")
