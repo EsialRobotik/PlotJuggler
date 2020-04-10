@@ -23,38 +23,36 @@ AsservStream::AsservStream():_running(false),fd(-1)
     QStringList  words_list;
        words_list
    		<< "timestamp"
-		<<"speed_Right_Goal"
-		<<"speed_Left_GoalLeft"
 
-		<<"speed_Right"
-		<<"speed_Left"
+   		<<"speed/right/goal"
+        <<"speed/left/goal"
+        <<"speed/right/current"
+        <<"speed/left/current"
+        <<"speed/right/outputConsign"
+        <<"speed/left/outputConsign"
+        <<"speed/right/output_consign_integrated"
+        <<"speed/left/output_consign_integrated"
 
-		<<"speed_Right_Output"
-		<<"speed_Left_Output"
 
-		<<"speed_Right_OutputIntegrated"
-		<<"speed_Left_OutputIntegrated"
+		<< "angle_regulator/goal"
+		<< "angle_regulator/accumulator"
+		<< "angle_regulator/output"
+		<< "angle_regulator/limited_output"
 
-		<<"angle_Regulator_Limited_Output"
-		<<"distance_Regulator_Limited_Output"
+		<< "distance_regulator/goal"
+		<< "distance_regulator/accumulator"
+		<< "distance_regulator/output"
+		<< "distance_regulator/limited_output"
 
-		<< "angle_Regulator_Goal"
-		<< "angle_Regulator_Accumulator"
-		<< "angle_Regulator_Output"
+		<< "raw_encoder/right"
+        << "raw_encoder/left"
 
-		<< "distance_Regulator_Goal"
-		<< "distance_Regulator_Accumulator"
-		<< "distance_Regulator_Output"
+		<< "odometry/X"
+		<< "odometry/Y"
+		<< "odometry/theta"
 
-		<<"raw_encoder_Right"
-		<<"raw_encoder_Left"
-
-		<< "odo_X"
-		<< "odo_Y"
-		<< "odo_theta"
-
-		<< "CommandManager_X"
-		<< "CommandManager_Y"
+		<< "commandManager/X"
+		<< "commandManager/Y"
 		;
 
    std::lock_guard<std::mutex> lock( mutex() );
@@ -217,61 +215,61 @@ double AsservStream::getValueFromName(const  std::string &name, UsbStreamSample 
 
 		if( name == "timestamp")
 			value = sample.timestamp;
-		else if( name == "speed_Right_Goal")
+		else if( name == "speed/right/goal")
 			value = sample.value1;
-		else if( name == "speed_Left_GoalLeft")
+		else if( name == "speed/left/goal")
 			value = sample.value4;
 
-		else if( name == "speed_Right")
+		else if( name == "speed/right/current")
 			value = sample.value2;
-		else if( name == "speed_Left")
+		else if( name == "speed/left/current")
 			value = sample.value5;
 
-		else if( name == "speed_Right_Output")
+		else if( name == "speed/right/outputConsign")
 			value = sample.value3;
-		else if( name == "speed_Left_Output")
+		else if( name == "speed/left/outputConsign")
 			value = sample.value6;
 
-		else if( name == "speed_Right_OutputIntegrated")
+		else if( name == "speed/right/output_consign_integrated")
 			value = sample.value7;
-		else if( name == "speed_Left_OutputIntegrated")
+		else if( name == "speed/left/output_consign_integrated")
 			value = sample.value8;
 
-		else if( name == "angle_Regulator_Limited_Output")
+		else if( name == "angle_regulator/limited_output")
 			value = sample.value9;
-		else if( name == "distance_Regulator_Limited_Output")
+		else if( name == "distance_regulator/limited_output")
 			value = sample.value10;
 
 
-		else if( name == "angle_Regulator_Goal")
+		else if( name == "angle_regulator/goal")
 			value = sample.value11;
-		else if( name == "angle_Regulator_Accumulator")
+		else if( name == "angle_regulator/accumulator")
 			value = sample.value12;
-		else if( name == "angle_Regulator_Output")
+		else if( name == "angle_regulator/output")
 				value = sample.value13;
 
-		else if( name == "distance_Regulator_Goal")
+		else if( name == "distance_regulator/goal")
 			value = sample.value14;
-		else if( name == "distance_Regulator_Accumulator")
+		else if( name == "distance_regulator/accumulator")
 			value = sample.value15;
-		else if( name == "distance_Regulator_Output")
+		else if( name == "distance_regulator/output")
 				value = sample.value16;
 
-		else if( name == "raw_encoder_Right")
+		else if( name == "raw_encoder/right")
 			value = sample.value17;
-		else if( name == "raw_encoder_Left")
+		else if( name == "raw_encoder/left")
 			value = sample.value18;
 
-		else if( name == "odo_X")
+		else if( name == "odometry/X")
 			value = sample.value19;
-		else if( name == "odo_Y")
+		else if( name == "odometry/Y")
 			value = sample.value20;
-		else if( name == "odo_theta")
+		else if( name == "odometry/theta")
 			value = sample.value21;
 
-		else if( name == "CommandManager_X")
+		else if( name == "commandManager/X")
 				value = sample.value22;
-		else if( name == "CommandManager_Y")
+		else if( name == "commandManager/Y")
 				value = sample.value23;
 
 		return value;
