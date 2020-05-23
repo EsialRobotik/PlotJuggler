@@ -2,6 +2,26 @@
 Changelog for package plotjuggler
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+2.7.0 (2020-05-03)
+------------------
+* Merge branch 'ros2' of https://github.com/facontidavide/PlotJuggler into ros2
+* added github actions for ros2
+* last fixes to DataStreamROS2
+* implemented DataLoadRosBag2
+* compile with ament/colcon
+* Contributors: Davide Faconti
+
+2.6.4 (2020-04-30)
+------------------
+* Fix the damn icons
+* marl updated
+* fix issue `#281 <https://github.com/facontidavide/PlotJuggler/issues/281>`_
+* catch exception in marl
+* fix backward-cpp
+* Implement feature `#274 <https://github.com/facontidavide/PlotJuggler/issues/274>`_
+* Implement feature `#269 <https://github.com/facontidavide/PlotJuggler/issues/269>`_
+* Contributors: Davide Faconti
+
 2.6.3 (2020-04-07)
 ------------------
 * Fix issue `#271 <https://github.com/facontidavide/PlotJuggler/issues/271>`_
