@@ -14,6 +14,7 @@ if( CATKIN_DEVEL_PREFIX OR catkin_FOUND OR CATKIN_BUILD_BINARY_PACKAGE)
         roscpp
         roscpp_serialization
         tf
+        tf2_ros
         diagnostic_msgs
         nav_msgs
         sensor_msgs
@@ -39,10 +40,14 @@ endif()
 
 cmake_policy (SET CMP0020 NEW)
 
+if (POLICY CMP0048)
+  cmake_policy(SET CMP0048 NEW)
+endif (POLICY CMP0048)
+
 add_definitions(
     -DPJ_MAJOR_VERSION=2
-    -DPJ_MINOR_VERSION=7
-    -DPJ_PATCH_VERSION=0 )
+    -DPJ_MINOR_VERSION=8
+    -DPJ_PATCH_VERSION=1 )
 
 add_subdirectory( 3rdparty/fmt )
 
@@ -153,9 +158,12 @@ endif()
 
 #############################################################
 
-add_subdirectory( 3rdparty/backward-cpp )
+if (NOT WIN32)
+  add_subdirectory( 3rdparty/backward-cpp )
+endif()
+
 add_subdirectory( 3rdparty/color_widgets )
-add_subdirectory( 3rdparty/marl )
+#add_subdirectory( 3rdparty/marl )
 add_subdirectory( 3rdparty/qwt/src )
 add_subdirectory( 3rdparty/lua-5.3.4 )
 add_subdirectory( plotter_gui )
@@ -175,30 +183,19 @@ else()
     endif()
 endif()
 
+add_subdirectory( plugins/ROS )
 
-if(COMPILING_WITH_CATKIN)
-    add_subdirectory( plugins/ROS )
-elseif(COMPILING_WITH_AMENT)
-    add_subdirectory( plugins/ROS )
+if(COMPILING_WITH_AMENT)
     ament_package()
 endif()
 
 #############################################################
 
-if("${CMAKE_INSTALL_PREFIX}" MATCHES "^/opt/")
-    set(DESKTOP_ICON_DIR "$ENV{HOME}/.local/share/icons")
+set(DESKTOP_ICON_DIR "${CMAKE_INSTALL_PREFIX}/share/icons")
 
-    install( FILES ${CMAKE_CURRENT_SOURCE_DIR}/PlotJuggler.desktop.ros
-             RENAME PlotJuggler.desktop
-             DESTINATION  "$ENV{HOME}/.local/share/applications"  )
-else()
-    set(DESKTOP_ICON_DIR "${CMAKE_INSTALL_PREFIX}/share/icons")
+install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/PlotJuggler.desktop
+        DESTINATION  "${CMAKE_INSTALL_PREFIX}/share/applications"  )
 
-    install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/PlotJuggler.desktop
-            DESTINATION  "${CMAKE_INSTALL_PREFIX}/share/applications"  )
-endif()
-
-
-install( FILES ${CMAKE_CURRENT_SOURCE_DIR}/plotjuggler.svg
-    DESTINATION ${DESKTOP_ICON_DIR}  )
+install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/plotjuggler.svg
+        DESTINATION ${DESKTOP_ICON_DIR}  )
 
