@@ -13,7 +13,7 @@ class AsservStreamControlPanel: public QMainWindow
 {
     Q_OBJECT
 public:
-	explicit AsservStreamControlPanel(Ui_AsservStreamControlPanel *ui, int fd);
+    explicit AsservStreamControlPanel(Ui_AsservStreamControlPanel *ui, int uartFd, int logFd = -1);
     ~ AsservStreamControlPanel(){}
 
     void closeEvent ( QCloseEvent* ) override{
@@ -21,6 +21,7 @@ public:
     }
 
 public slots:
+    void on_reset_btn_clicked();
     void on_motor_enable_btn_clicked();
     void on_motor_disable_btn_clicked();
     void on_distAngle_enable_btn_clicked();
@@ -29,6 +30,9 @@ public slots:
     void on_vitesse_droite_update_btn_clicked();
     void on_distance_update_btn_clicked();
     void on_angle_update_btn_clicked();
+
+    void on_angle_acc_update_btn_clicked();
+    void on_distance_acc_update_btn_clicked();
 
     void on_robot_speed_lin_cmd_btn_clicked();
     void on_robot_speed_ang_cmd_btn_clicked();
@@ -46,7 +50,8 @@ private:
 
     void send(char *buffer, size_t length);
     Ui_AsservStreamControlPanel *ui_;
-    int fd_;
+    int uartFd_;
+    int logFd_;
 };
 
 

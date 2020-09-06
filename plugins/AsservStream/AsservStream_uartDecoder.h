@@ -30,6 +30,10 @@ typedef struct
 	float value21;
 	float value22;
 	float value23;
+	float value24;
+	float value25;
+	float value26;
+	float value27;
 }  __attribute__((packed)) UsbStreamSample;
 
 

@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>770</width>
-    <height>730</height>
+    <width>918</width>
+    <height>737</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -19,7 +19,7 @@
      <rect>
       <x>10</x>
       <y>20</y>
-      <width>551</width>
+      <width>561</width>
       <height>221</height>
      </rect>
     </property>
@@ -50,12 +50,12 @@ QGroupBox::title {
       <rect>
        <x>20</x>
        <y>20</y>
-       <width>511</width>
+       <width>531</width>
        <height>191</height>
       </rect>
      </property>
      <property name="currentIndex">
-      <number>0</number>
+      <number>4</number>
      </property>
      <widget class="QWidget" name="tab_vitesse_gauche">
       <attribute name="title">
@@ -64,8 +64,8 @@ QGroupBox::title {
       <widget class="QPushButton" name="vitesse_gauche_update_btn">
        <property name="geometry">
         <rect>
-         <x>320</x>
-         <y>80</y>
+         <x>410</x>
+         <y>60</y>
          <width>99</width>
          <height>27</height>
         </rect>
@@ -192,8 +192,8 @@ QGroupBox::title {
       <widget class="QPushButton" name="vitesse_droite_update_btn">
        <property name="geometry">
         <rect>
-         <x>320</x>
-         <y>70</y>
+         <x>410</x>
+         <y>60</y>
          <width>99</width>
          <height>27</height>
         </rect>
@@ -275,7 +275,10 @@ QGroupBox::title {
         </rect>
        </property>
        <property name="decimals">
-        <number>4</number>
+        <number>2</number>
+       </property>
+       <property name="maximum">
+        <double>10000.989999999999782</double>
        </property>
        <property name="singleStep">
         <double>0.100000000000000</double>
@@ -297,8 +300,8 @@ QGroupBox::title {
       <widget class="QPushButton" name="distance_update_btn">
        <property name="geometry">
         <rect>
-         <x>320</x>
-         <y>70</y>
+         <x>410</x>
+         <y>60</y>
          <width>99</width>
          <height>27</height>
         </rect>
@@ -322,7 +325,10 @@ QGroupBox::title {
         </rect>
        </property>
        <property name="decimals">
-        <number>4</number>
+        <number>2</number>
+       </property>
+       <property name="maximum">
+        <double>10000.000000000000000</double>
        </property>
        <property name="singleStep">
         <double>0.100000000000000</double>
@@ -344,14 +350,161 @@ QGroupBox::title {
       <widget class="QPushButton" name="angle_update_btn">
        <property name="geometry">
         <rect>
-         <x>320</x>
-         <y>70</y>
+         <x>410</x>
+         <y>60</y>
          <width>99</width>
          <height>27</height>
         </rect>
        </property>
        <property name="text">
         <string>Update</string>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QWidget" name="tab_acc">
+      <attribute name="title">
+       <string>Acceleration</string>
+      </attribute>
+      <widget class="QPushButton" name="angle_acc_update_btn">
+       <property name="geometry">
+        <rect>
+         <x>390</x>
+         <y>20</y>
+         <width>99</width>
+         <height>27</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Update</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_29">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>20</y>
+         <width>121</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Angle acceleration</string>
+       </property>
+      </widget>
+      <widget class="QDoubleSpinBox" name="angle_acc">
+       <property name="geometry">
+        <rect>
+         <x>150</x>
+         <y>20</y>
+         <width>91</width>
+         <height>27</height>
+        </rect>
+       </property>
+       <property name="decimals">
+        <number>1</number>
+       </property>
+       <property name="maximum">
+        <double>10000.000000000000000</double>
+       </property>
+       <property name="singleStep">
+        <double>0.100000000000000</double>
+       </property>
+      </widget>
+      <widget class="Line" name="line_9">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>60</y>
+         <width>531</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+      </widget>
+      <widget class="QDoubleSpinBox" name="dist_acc">
+       <property name="geometry">
+        <rect>
+         <x>150</x>
+         <y>90</y>
+         <width>91</width>
+         <height>27</height>
+        </rect>
+       </property>
+       <property name="decimals">
+        <number>1</number>
+       </property>
+       <property name="maximum">
+        <double>10000.000000000000000</double>
+       </property>
+       <property name="singleStep">
+        <double>0.100000000000000</double>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="distance_acc_update_btn">
+       <property name="geometry">
+        <rect>
+         <x>390</x>
+         <y>90</y>
+         <width>99</width>
+         <height>27</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Update</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_30">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>90</y>
+         <width>131</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Distance acceleration</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_31">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>120</y>
+         <width>191</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Also Direct speed acceleration</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_32">
+       <property name="geometry">
+        <rect>
+         <x>250</x>
+         <y>20</y>
+         <width>121</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>mm/(asserv Period)</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_33">
+       <property name="geometry">
+        <rect>
+         <x>250</x>
+         <y>90</y>
+         <width>121</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>mm/(asserv Period)</string>
        </property>
       </widget>
      </widget>
@@ -775,7 +928,7 @@ QGroupBox::title {
       </rect>
      </property>
      <property name="text">
-      <string>Consigne vitesse roue gauche:</string>
+      <string>Consigne directe vitesse roue gauche:</string>
      </property>
     </widget>
     <widget class="QLabel" name="label_15">
@@ -836,7 +989,7 @@ QGroupBox::title {
       </rect>
      </property>
      <property name="text">
-      <string>Consigne vitesse roue droite:</string>
+      <string>Consigne directe vitesse roue droite:</string>
      </property>
     </widget>
     <widget class="QPushButton" name="right_whell_speed_cmd_btn">
@@ -1136,13 +1289,58 @@ QGroupBox::title {
      </property>
     </widget>
    </widget>
+   <widget class="QGroupBox" name="group_reset">
+    <property name="geometry">
+     <rect>
+      <x>770</x>
+      <y>90</y>
+      <width>131</width>
+      <height>71</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QGroupBox {
+    border: 1px solid gray;
+    border-radius: 9px;
+    margin-top: 0.5em;
+}
+
+QGroupBox::title {
+    subcontrol-origin: margin;
+    left: 10px;
+    padding: 0 3px 0 3px;
+}</string>
+    </property>
+    <property name="title">
+     <string>Reset</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+    </property>
+    <property name="flat">
+     <bool>true</bool>
+    </property>
+    <widget class="QPushButton" name="reset_btn">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>30</y>
+       <width>99</width>
+       <height>27</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Reset</string>
+     </property>
+    </widget>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>770</width>
+     <width>918</width>
      <height>22</height>
     </rect>
    </property>
