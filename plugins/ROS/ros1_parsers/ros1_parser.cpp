@@ -109,7 +109,8 @@ void CompositeParser::setMaxArrayPolicy(LargeArrayPolicy policy, size_t max_size
   }
 }
 
-void CompositeParser::registerMessageType(const std::string& topic_name, const std::string& topic_type,
+void CompositeParser::registerMessageType(const std::string& topic_name,
+                                          const std::string& topic_type,
                                           const std::string& definition)
 {
   std::shared_ptr<MessageParserBase> parser;
@@ -159,6 +160,10 @@ void CompositeParser::registerMessageType(const std::string& topic_name, const s
   else if (type == "geometry_msgs/PoseWithCovariance")
   {
     parser.reset(new PoseCovarianceMsgParser(topic_name, _plot_data));
+  }
+  else if (type == "geometry_msgs/PoseWithCovarianceStamped")
+  {
+    parser.reset(new PoseCovarianceStampedMsgParser(topic_name, _plot_data));
   }
   else if (type == "geometry_msgs/Twist")
   {
