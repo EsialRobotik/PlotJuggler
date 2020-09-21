@@ -55,7 +55,7 @@ QGroupBox::title {
       </rect>
      </property>
      <property name="currentIndex">
-      <number>4</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="tab_vitesse_gauche">
       <attribute name="title">
@@ -146,6 +146,9 @@ QGroupBox::title {
        </property>
       </widget>
       <widget class="QSpinBox" name="vitesse_gauche_range">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
        <property name="geometry">
         <rect>
          <x>120</x>
@@ -248,6 +251,9 @@ QGroupBox::title {
        </property>
       </widget>
       <widget class="QSpinBox" name="vitesse_droite_range">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
        <property name="geometry">
         <rect>
          <x>120</x>
@@ -473,12 +479,12 @@ QGroupBox::title {
         <rect>
          <x>10</x>
          <y>120</y>
-         <width>191</width>
+         <width>361</width>
          <height>21</height>
         </rect>
        </property>
        <property name="text">
-        <string>Also Direct speed acceleration</string>
+        <string>(Also right wheel acceleration limit for direct speed consign)</string>
        </property>
       </widget>
       <widget class="QLabel" name="label_32">
@@ -505,6 +511,19 @@ QGroupBox::title {
        </property>
        <property name="text">
         <string>mm/(asserv Period)</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_34">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>50</y>
+         <width>361</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>(Also left wheel acceleration limit for direct speed consign)</string>
        </property>
       </widget>
      </widget>
