@@ -1,0 +1,83 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<root version="2.3.8">
+ <tabbed_widget name="Main Window" parent="main_window">
+  <plotmatrix rows="4" tab_name="plot" columns="2">
+   <plot style="Lines" row="0" col="0">
+    <range top="0.100000" bottom="-0.100000" left="2.960000" right="22.960000"/>
+    <limitY/>
+    <curve R="31" B="180" name="distance_regulator/accumulator" custom_transform="noTransform" G="119"/>
+    <curve R="214" B="40" name="distance_regulator/goal" custom_transform="noTransform" G="39"/>
+    <transform value="noTransform"/>
+   </plot>
+   <plot style="Lines" row="1" col="0">
+    <range top="0.100000" bottom="-0.100000" left="2.960000" right="22.960000"/>
+    <limitY/>
+    <curve R="241" B="193" name="angle_regulator/accumulator" custom_transform="noTransform" G="76"/>
+    <curve R="148" B="189" name="angle_regulator/goal" custom_transform="noTransform" G="103"/>
+    <transform value="noTransform"/>
+   </plot>
+   <plot style="Lines" row="2" col="0">
+    <range top="0.100000" bottom="-0.100000" left="2.960000" right="22.960000"/>
+    <limitY/>
+    <curve R="31" B="180" name="speed/left/current" custom_transform="noTransform" G="119"/>
+    <curve R="214" B="40" name="speed/left/goal" custom_transform="noTransform" G="39"/>
+    <transform value="noTransform"/>
+   </plot>
+   <plot style="Lines" row="3" col="0">
+    <range top="0.100000" bottom="-0.100000" left="2.960000" right="22.960000"/>
+    <limitY/>
+    <curve R="26" B="56" name="speed/left/outputConsign" custom_transform="noTransform" G="201"/>
+    <curve R="255" B="14" name="speed/left/output_consign_integrated" custom_transform="noTransform" G="127"/>
+    <transform value="noTransform"/>
+   </plot>
+   <plot style="Lines" row="0" col="1">
+    <range top="0.100000" bottom="-0.100000" left="2.960000" right="22.960000"/>
+    <limitY/>
+    <curve R="26" B="56" name="distance_regulator/limited_output" custom_transform="noTransform" G="201"/>
+    <curve R="255" B="14" name="distance_regulator/output" custom_transform="noTransform" G="127"/>
+    <transform value="noTransform"/>
+   </plot>
+   <plot style="Lines" row="1" col="1">
+    <range top="0.100000" bottom="-0.100000" left="2.960000" right="22.960000"/>
+    <limitY/>
+    <curve R="23" B="207" name="angle_regulator/limited_output" custom_transform="noTransform" G="190"/>
+    <curve R="188" B="34" name="angle_regulator/output" custom_transform="noTransform" G="189"/>
+    <transform value="noTransform"/>
+   </plot>
+   <plot style="Lines" row="2" col="1">
+    <range top="0.100000" bottom="-0.100000" left="2.960000" right="22.960000"/>
+    <limitY/>
+    <curve R="241" B="193" name="speed/right/current" custom_transform="noTransform" G="76"/>
+    <curve R="148" B="189" name="speed/right/goal" custom_transform="noTransform" G="103"/>
+    <transform value="noTransform"/>
+   </plot>
+   <plot style="Lines" row="3" col="1">
+    <range top="0.100000" bottom="-0.100000" left="2.960000" right="22.960000"/>
+    <limitY/>
+    <curve R="23" B="207" name="speed/right/outputConsign" custom_transform="noTransform" G="190"/>
+    <curve R="188" B="34" name="speed/right/output_consign_integrated" custom_transform="noTransform" G="189"/>
+    <transform value="noTransform"/>
+   </plot>
+  </plotmatrix>
+  <currentPlotMatrix index="0"/>
+ </tabbed_widget>
+ <use_relative_time_offset enabled="1"/>
+ <!-- - - - - - - - - - - - - - - -->
+ <!-- - - - - - - - - - - - - - - -->
+ <Plugins>
+  <plugin ID="DataLoad CSV">
+   <default time_axis=""/>
+  </plugin>
+  <plugin ID="DataLoad ULog"/>
+  <plugin ID="Esial Robotik asserv stream"/>
+  <plugin ID="WebSocket Server"/>
+ </Plugins>
+ <!-- - - - - - - - - - - - - - - -->
+ <previouslyLoaded_Datafiles/>
+ <previouslyLoaded_Streamer name="Esial Robotik asserv stream"/>
+ <!-- - - - - - - - - - - - - - - -->
+ <customMathEquations/>
+ <snippets/>
+ <!-- - - - - - - - - - - - - - - -->
+</root>
+
