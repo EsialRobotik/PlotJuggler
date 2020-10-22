@@ -47,6 +47,10 @@ public:
 
 	bool getDecodedSample(UsbStreamSample *sample);
 
+	uint8_t configBuffer[512];
+	int nbValues;
+	bool configAvailable = false;
+
 private:
 	UsbStreamSample currentDecodedSample;
 	bool isCurrentSampleValid = false;
@@ -55,10 +59,10 @@ private:
 
 	void synchroLookUp(uint8_t byte);
 	void getRemainingData(uint8_t byte);
+	void getRemainingConfig(uint8_t byte);
 
 	typedef void (AsservStream_uartDecoder::*stateFunction)(uint8_t byte);
 	stateFunction currentState;
-
 };
 
 #endif

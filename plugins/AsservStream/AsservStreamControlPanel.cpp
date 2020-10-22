@@ -2,8 +2,8 @@
 
 #include <unistd.h>  /* UNIX Standard Definitions      */
 
-AsservStreamControlPanel::AsservStreamControlPanel(Ui_AsservStreamControlPanel *ui, int uartFd, int logFd ):
-QMainWindow(),ui_(ui), uartFd_(uartFd), logFd_(logFd)
+AsservStreamControlPanel::AsservStreamControlPanel(Ui_AsservStreamControlPanel *ui, AsservStream_uartDecoder *uartDecoder, int uartFd, int logFd ):
+QMainWindow(),ui_(ui), uartFd_(uartFd), logFd_(logFd), uartDecoder(uartDecoder)
 {
 	ui->setupUi(this);
 }
@@ -105,8 +105,11 @@ void AsservStreamControlPanel::on_angle_acc_update_btn_clicked()
 void AsservStreamControlPanel::on_distance_acc_update_btn_clicked()
 {
     char buffer[128];
-    int len = sprintf(buffer, "asserv distacc %s",
-              ui_->dist_acc->text().toStdString().c_str() );
+    int len = sprintf(buffer, "asserv distacc %s %s %s",
+              ui_->dist_acc_max->text().toStdString().c_str(),
+              ui_->dist_acc_min->text().toStdString().c_str(),
+			  ui_->dist_acc_threshold->text().toStdString().c_str()
+			  );
     send(buffer, len);
 }
 
@@ -162,4 +165,21 @@ void AsservStreamControlPanel::on_goto_cmd_btn_clicked()
     char buffer[128];
     int len = sprintf(buffer, "asserv addgoto %s %s", ui_->goto_X->text().toStdString().c_str(), ui_->goto_Y->text().toStdString().c_str());
     send(buffer, len);
+}
+
+void AsservStreamControlPanel::on_get_config_btn_clicked()
+{
+    char buffer[128];
+    int len = sprintf(buffer, "asserv get_config");
+    send(buffer, len);
+}
+
+void AsservStreamControlPanel::on_update_config_btn_clicked()
+{
+	float *tab = (float*)uartDecoder->configBuffer;
+	ui_->vitesse_gauche_Kp->setValue(tab[0]);
+	ui_->vitesse_gauche_Ki->setValue(tab[1]);
+	ui_->vitesse_droite_Kp->setValue(tab[2]);
+	ui_->vitesse_droite_Ki->setValue(tab[3]);
+
 }

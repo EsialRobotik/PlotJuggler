@@ -7,18 +7,22 @@
 #include <map>
 #include "PlotJuggler/statepublisher_base.h"
 #include "ui_asservstreamcontrolpanel.h"
+#include "AsservStream_uartDecoder.h"
 
 
 class AsservStreamControlPanel: public QMainWindow
 {
     Q_OBJECT
 public:
-    explicit AsservStreamControlPanel(Ui_AsservStreamControlPanel *ui, int uartFd, int logFd = -1);
+    explicit AsservStreamControlPanel(Ui_AsservStreamControlPanel *ui, AsservStream_uartDecoder *uartDecoder, int uartFd, int logFd = -1);
     ~ AsservStreamControlPanel(){}
 
     void closeEvent ( QCloseEvent* ) override{
         emit closed();
     }
+
+
+    void updateConfig(float *tab, int nbValue);
 
 public slots:
     void on_reset_btn_clicked();
@@ -43,6 +47,9 @@ public slots:
     void on_angle_cmd_btn_clicked();
     void on_goto_cmd_btn_clicked();
 
+    void on_get_config_btn_clicked();
+    void on_update_config_btn_clicked();
+
 signals:
     void closed();
 
@@ -52,6 +59,7 @@ private:
     Ui_AsservStreamControlPanel *ui_;
     int uartFd_;
     int logFd_;
+    AsservStream_uartDecoder *uartDecoder;
 };
 
 
