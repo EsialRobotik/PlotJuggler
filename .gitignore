@@ -41,3 +41,7 @@ debian
 # eclipse
 .project
 .cproject
+
+# Clion (JetBrains IDE related files and directories)
+.idea
+cmake-build-*
