@@ -161,6 +161,19 @@ QGroupBox::title {
         <number>2</number>
        </property>
       </widget>
+      <widget class="QLabel" name="vitesse_gauche_range_lb">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>160</y>
+         <width>351</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Speed range = []</string>
+       </property>
+      </widget>
      </widget>
      <widget class="QWidget" name="tab_vitesse_droite">
       <attribute name="title">
@@ -264,6 +277,19 @@ QGroupBox::title {
        </property>
        <property name="maximum">
         <number>2</number>
+       </property>
+      </widget>
+      <widget class="QLabel" name="vitesse_droite_range_lb">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>160</y>
+         <width>351</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Speed range = []</string>
        </property>
       </widget>
      </widget>

@@ -6,8 +6,41 @@ AsservStreamControlPanel::AsservStreamControlPanel(Ui_AsservStreamControlPanel *
 QMainWindow(),ui_(ui), uartFd_(uartFd), logFd_(logFd), uartDecoder(uartDecoder)
 {
 	ui->setupUi(this);
+	connect(ui_->vitesse_gauche_range, SIGNAL(valueChanged(int)),
+	    this, SLOT(on_spinboxLeftValueChanged(int)));
+	connect(ui_->vitesse_droite_range, SIGNAL(valueChanged(int)),
+	    this, SLOT(on_spinboxRightValueChanged(int)));
+
+    leftSpinBoxValue = ui_->vitesse_gauche_range->value();
+    rightSpinBoxValue = ui_->vitesse_droite_range->value();
+    for(int i=0; i<3; i++)
+    {
+		leftKp[i] = 0;
+		leftKi[i] = 0;
+		rightKp[i] = 0;
+		rightKi[i] = 0;
+		leftSpeedRange[i] = 0;
+		rightSpeedRange[i] = 0;
+    }
 }
 
+void AsservStreamControlPanel::on_spinboxLeftValueChanged(int newLeftSpinBoxValue)
+{
+	leftKp[leftSpinBoxValue] = ui_->vitesse_gauche_Kp->value();
+	leftKi[leftSpinBoxValue] = ui_->vitesse_gauche_Ki->value();
+	leftSpinBoxValue = newLeftSpinBoxValue;
+	ui_->vitesse_gauche_Kp->setValue(leftKp[leftSpinBoxValue]);
+	ui_->vitesse_gauche_Ki->setValue(leftKi[leftSpinBoxValue]);
+}
+
+void AsservStreamControlPanel::on_spinboxRightValueChanged(int newrightSpinBoxValue)
+{
+	rightKp[rightSpinBoxValue] = ui_->vitesse_droite_Kp->value();
+	rightKi[rightSpinBoxValue] = ui_->vitesse_droite_Ki->value();
+	rightSpinBoxValue = newrightSpinBoxValue;
+	ui_->vitesse_droite_Kp->setValue(rightKp[rightSpinBoxValue]);
+	ui_->vitesse_droite_Ki->setValue(rightKi[rightSpinBoxValue]);
+}
 
 void AsservStreamControlPanel::send(char *buffer, size_t length)
 {
@@ -177,9 +210,68 @@ void AsservStreamControlPanel::on_get_config_btn_clicked()
 void AsservStreamControlPanel::on_update_config_btn_clicked()
 {
 	float *tab = (float*)uartDecoder->configBuffer;
-	ui_->vitesse_gauche_Kp->setValue(tab[0]);
-	ui_->vitesse_gauche_Ki->setValue(tab[1]);
-	ui_->vitesse_droite_Kp->setValue(tab[2]);
-	ui_->vitesse_droite_Ki->setValue(tab[3]);
+	int index=0;
+
+	leftKp[0] = tab[index++];
+	leftKi[0] = tab[index++];
+	leftSpeedRange[0] = tab[index++];
+	leftKp[1] = tab[index++];
+	leftKi[1] = tab[index++];
+	leftSpeedRange[1] = tab[index++];
+	leftKp[2] = tab[index++];
+	leftKi[2] = tab[index++];
+	leftSpeedRange[2] = tab[index++];
+
+	rightKp[0] = tab[index++];
+	rightKi[0] = tab[index++];
+	rightSpeedRange[0] = tab[index++];
+	rightKp[1] = tab[index++];
+	rightKi[1] = tab[index++];
+	rightSpeedRange[1] = tab[index++];
+	rightKp[2] = tab[index++];
+	rightKi[2] = tab[index++];
+	rightSpeedRange[2] = tab[index++];
+
+
+	ui_->distance_Kp->setValue(tab[index++]);
+	ui_->angle_Kp->setValue(tab[index++]);
+
+	ui_->angle_acc->setValue(tab[index++]);
+
+	ui_->dist_acc_max->setValue(tab[index++]);
+	ui_->dist_acc_min->setValue(tab[index++]);
+	ui_->dist_acc_threshold->setValue(tab[index++]);
+
+	ui_->vitesse_gauche_Kp->setValue(leftKp[leftSpinBoxValue]);
+	ui_->vitesse_gauche_Ki->setValue(leftKi[leftSpinBoxValue]);
+	ui_->vitesse_droite_Kp->setValue(rightKp[rightSpinBoxValue]);
+	ui_->vitesse_droite_Ki->setValue(rightKi[rightSpinBoxValue]);
+
+	QString strLeft("Speed Range:   1=>[0;");
+	strLeft.append(QString::number(leftSpeedRange[0]));
+	strLeft.append("]   2=>[");
+	strLeft.append(QString::number(leftSpeedRange[0]));
+	strLeft.append(";");
+	strLeft.append(QString::number(leftSpeedRange[1]));
+	strLeft.append("]   3=>[");
+	strLeft.append(QString::number(leftSpeedRange[1]));
+	strLeft.append(";");
+	strLeft.append(QString::number(leftSpeedRange[2]));
+	strLeft.append("]");
+	ui_->vitesse_gauche_range_lb->setText(strLeft);
+
+
+	QString strRight("Speed Range:   1=>[0;");
+	strRight.append(QString::number(rightSpeedRange[0]));
+	strRight.append("]   2=>[");
+	strRight.append(QString::number(rightSpeedRange[0]));
+	strRight.append(";");
+	strRight.append(QString::number(rightSpeedRange[1]));
+	strRight.append("]   3=>[");
+	strRight.append(QString::number(rightSpeedRange[1]));
+	strRight.append(";");
+	strRight.append(QString::number(rightSpeedRange[2]));
+	strRight.append("]");
+	ui_->vitesse_droite_range_lb->setText(strRight);
 
 }
