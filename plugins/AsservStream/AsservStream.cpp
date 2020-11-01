@@ -16,7 +16,7 @@
 #include "ui_asservstreamcontrolpanel.h"
 #include "AsservStreamControlPanel.h"
 
-#define ASSERV_FREQ 500.0
+#define ASSERV_FREQ 300.0
 
 AsservStream::AsservStream():_running(false),fd(-1), fdLog(-1)
 {
@@ -48,6 +48,7 @@ AsservStream::AsservStream():_running(false),fd(-1), fdLog(-1)
         << "distance_regulator/goal"
         << "distance_regulator/accumulator"
         << "distance_regulator/output"
+        << "distance_regulator/outputIntegrated"
         << "distance_regulator/limited_output"
 
         << "raw_encoder/right"

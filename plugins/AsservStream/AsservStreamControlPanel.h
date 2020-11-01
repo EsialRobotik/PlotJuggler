@@ -50,9 +50,12 @@ public slots:
     void on_get_config_btn_clicked();
     void on_update_config_btn_clicked();
 
+    void on_goto_test_btn_clicked();
 
     void on_spinboxLeftValueChanged(int i);
     void on_spinboxRightValueChanged(int i);
+
+
 
 signals:
     void closed();

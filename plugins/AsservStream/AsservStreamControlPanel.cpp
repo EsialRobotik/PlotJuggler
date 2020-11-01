@@ -200,6 +200,14 @@ void AsservStreamControlPanel::on_goto_cmd_btn_clicked()
     send(buffer, len);
 }
 
+void AsservStreamControlPanel::on_goto_test_btn_clicked()
+{
+    char buffer[128];
+    int len = sprintf(buffer, "asserv gototest");
+    send(buffer, len);
+}
+
+
 void AsservStreamControlPanel::on_get_config_btn_clicked()
 {
     char buffer[128];
