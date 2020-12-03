@@ -1,65 +1,74 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <root version="2.3.8">
- <tabbed_widget name="Main Window" parent="main_window">
+ <tabbed_widget parent="main_window" name="Main Window">
   <plotmatrix rows="4" tab_name="plot" columns="2">
-   <plot style="Lines" row="0" col="0">
-    <range top="0.100000" bottom="-0.100000" left="2.960000" right="22.960000"/>
+   <plot col="0" row="0" style="Lines">
+    <range bottom="-29.260461" left="0.000000" top="1199.678918" right="8.526667"/>
     <limitY/>
-    <curve R="31" B="180" name="distance_regulator/accumulator" custom_transform="noTransform" G="119"/>
-    <curve R="214" B="40" name="distance_regulator/goal" custom_transform="noTransform" G="39"/>
+    <curve R="31" B="180" G="119" name="distance_regulator/accumulator" custom_transform="noTransform"/>
+    <curve R="214" B="40" G="39" name="distance_regulator/goal" custom_transform="noTransform"/>
     <transform value="noTransform"/>
    </plot>
-   <plot style="Lines" row="1" col="0">
-    <range top="0.100000" bottom="-0.100000" left="2.960000" right="22.960000"/>
+   <plot col="0" row="1" style="Lines">
+    <range bottom="-0.238292" left="0.000000" top="6.442246" right="8.526667"/>
     <limitY/>
-    <curve R="241" B="193" name="angle_regulator/accumulator" custom_transform="noTransform" G="76"/>
-    <curve R="148" B="189" name="angle_regulator/goal" custom_transform="noTransform" G="103"/>
+    <curve R="241" B="193" G="76" name="angle_regulator/accumulator" custom_transform="noTransform"/>
+    <curve R="148" B="189" G="103" name="angle_regulator/goal" custom_transform="noTransform"/>
     <transform value="noTransform"/>
    </plot>
-   <plot style="Lines" row="2" col="0">
-    <range top="0.100000" bottom="-0.100000" left="2.960000" right="22.960000"/>
+   <plot col="0" row="2" style="Lines">
+    <range bottom="-761.504156" left="0.000000" top="1236.495367" right="8.526667"/>
     <limitY/>
-    <curve R="31" B="180" name="speed/left/current" custom_transform="noTransform" G="119"/>
-    <curve R="214" B="40" name="speed/left/goal" custom_transform="noTransform" G="39"/>
+    <curve R="31" B="180" G="119" name="speed/left/current" custom_transform="noTransform"/>
+    <curve R="214" B="40" G="39" name="speed/left/goal" custom_transform="noTransform"/>
     <transform value="noTransform"/>
    </plot>
-   <plot style="Lines" row="3" col="0">
-    <range top="0.100000" bottom="-0.100000" left="2.960000" right="22.960000"/>
+   <plot col="0" row="3" style="Lines">
+    <range bottom="-40.372786" left="0.000000" top="83.237990" right="8.526667"/>
     <limitY/>
-    <curve R="26" B="56" name="speed/left/outputConsign" custom_transform="noTransform" G="201"/>
-    <curve R="255" B="14" name="speed/left/output_consign_integrated" custom_transform="noTransform" G="127"/>
+    <curve R="26" B="56" G="201" name="speed/left/outputConsign" custom_transform="noTransform"/>
+    <curve R="255" B="14" G="127" name="speed/left/output_consign_integrated" custom_transform="noTransform"/>
     <transform value="noTransform"/>
    </plot>
-   <plot style="Lines" row="0" col="1">
-    <range top="0.100000" bottom="-0.100000" left="2.960000" right="22.960000"/>
+   <plot col="1" row="0" style="Lines">
+    <range bottom="-37.526667" left="0.000000" top="1537.500650" right="8.526667"/>
     <limitY/>
-    <curve R="26" B="56" name="distance_regulator/limited_output" custom_transform="noTransform" G="201"/>
-    <curve R="255" B="14" name="distance_regulator/output" custom_transform="noTransform" G="127"/>
+    <curve R="26" B="56" G="201" name="distance_regulator/limited_output" custom_transform="noTransform"/>
+    <curve R="255" B="14" G="127" name="distance_regulator/output" custom_transform="noTransform"/>
     <transform value="noTransform"/>
    </plot>
-   <plot style="Lines" row="1" col="1">
-    <range top="0.100000" bottom="-0.100000" left="2.960000" right="22.960000"/>
+   <plot col="1" row="1" style="Lines">
+    <range bottom="-1575.000000" left="0.000000" top="1575.000000" right="8.526667"/>
     <limitY/>
-    <curve R="23" B="207" name="angle_regulator/limited_output" custom_transform="noTransform" G="190"/>
-    <curve R="188" B="34" name="angle_regulator/output" custom_transform="noTransform" G="189"/>
+    <curve R="23" B="207" G="190" name="angle_regulator/limited_output" custom_transform="noTransform"/>
+    <curve R="188" B="34" G="189" name="angle_regulator/output" custom_transform="noTransform"/>
     <transform value="noTransform"/>
    </plot>
-   <plot style="Lines" row="2" col="1">
-    <range top="0.100000" bottom="-0.100000" left="2.960000" right="22.960000"/>
+   <plot col="1" row="2" style="Lines">
+    <range bottom="-214.346935" left="0.000000" top="1193.522533" right="8.526667"/>
     <limitY/>
-    <curve R="241" B="193" name="speed/right/current" custom_transform="noTransform" G="76"/>
-    <curve R="148" B="189" name="speed/right/goal" custom_transform="noTransform" G="103"/>
+    <curve R="241" B="193" G="76" name="speed/right/current" custom_transform="noTransform"/>
+    <curve R="148" B="189" G="103" name="speed/right/goal" custom_transform="noTransform"/>
     <transform value="noTransform"/>
    </plot>
-   <plot style="Lines" row="3" col="1">
-    <range top="0.100000" bottom="-0.100000" left="2.960000" right="22.960000"/>
+   <plot col="1" row="3" style="Lines">
+    <range bottom="-6.327838" left="0.000000" top="75.042890" right="8.526667"/>
     <limitY/>
-    <curve R="23" B="207" name="speed/right/outputConsign" custom_transform="noTransform" G="190"/>
-    <curve R="188" B="34" name="speed/right/output_consign_integrated" custom_transform="noTransform" G="189"/>
+    <curve R="23" B="207" G="190" name="speed/right/outputConsign" custom_transform="noTransform"/>
+    <curve R="188" B="34" G="189" name="speed/right/output_consign_integrated" custom_transform="noTransform"/>
     <transform value="noTransform"/>
    </plot>
   </plotmatrix>
-  <currentPlotMatrix index="0"/>
+  <plotmatrix rows="1" tab_name="plot" columns="1">
+   <plot col="0" row="0" style="Lines">
+    <range bottom="-217.324876" left="-22.478294" top="308.339558" right="921.610069"/>
+    <limitY/>
+    <curve R="31" B="180" G="119" name="commandManager/[X;Y]" custom_transform="XYPlot" curve_y="commandManager/Y" curve_x="commandManager/X"/>
+    <curve R="214" B="40" G="39" name="odometry/[X;Y]" custom_transform="XYPlot" curve_y="odometry/Y" curve_x="odometry/X"/>
+    <transform value="XYPlot"/>
+   </plot>
+  </plotmatrix>
+  <currentPlotMatrix index="1"/>
  </tabbed_widget>
  <use_relative_time_offset enabled="1"/>
  <!-- - - - - - - - - - - - - - - -->
@@ -74,10 +83,108 @@
  </Plugins>
  <!-- - - - - - - - - - - - - - - -->
  <previouslyLoaded_Datafiles/>
- <previouslyLoaded_Streamer name="Esial Robotik asserv stream"/>
  <!-- - - - - - - - - - - - - - - -->
  <customMathEquations/>
- <snippets/>
+ <snippets>
+  <snippet name="1st_derivative" language="JS">
+   <global>var prevX = 0
+var prevY = 0</global>
+   <equation>dx = time - prevX
+dy = value - prevY
+prevX = time
+prevY = value
+
+return dy/dx</equation>
+  </snippet>
+  <snippet name="1st_order_lowpass" language="JS">
+   <global>var prevY = 0
+var alpha = 0.1</global>
+   <equation>prevY = alpha * value + (1.-alpha) * prevY
+
+return prevY</equation>
+  </snippet>
+  <snippet name="2D_velocity" language="JS">
+   <global>var prev_x = 0
+var prev_y = 0
+var prev_t = 0</global>
+   <equation>X = $$your_odometry/position/x$$
+Y = $$your_odometry/position/y$$
+
+var dist = sqrt( (X-prev_x)*(X-prev_x) + (Y-prev_y)*(Y-prev_y) )
+var dT = time - prev_t
+
+prev_x = X
+prev_y = Y
+prev_t = time
+
+return dist / dT</equation>
+  </snippet>
+  <snippet name="average_two_curves" language="JS">
+   <global></global>
+   <equation>a = $$PLOT_A$$
+b = $$PLOT_B$$
+
+return (a+b)/2</equation>
+  </snippet>
+  <snippet name="dist" language="LUA">
+   <global></global>
+   <equation>return sqrt(
+(V1 = $$commandManager/X$$
+-
+V2 = $$odometry/X$$)
+* 
+(V1 = $$commandManager/X$$
+-
+V2 = $$odometry/X$$)
++
+(
+V3 = $$commandManager/Y$$
+-
+V4 = $$odometry/Y$$
+)
+*
+(
+V3 = $$commandManager/Y$$
+-
+V4 = $$odometry/Y$$
+)
+)</equation>
+  </snippet>
+  <snippet name="integral" language="JS">
+   <global>var integral = 0</global>
+   <equation>integral += value
+return integral</equation>
+  </snippet>
+  <snippet name="rad_to_deg" language="JS">
+   <global></global>
+   <equation>return value*180/3.1417</equation>
+  </snippet>
+  <snippet name="remove_offset" language="JS">
+   <global>var is_first = true
+var first_value = 0</global>
+   <equation>if (is_first)
+{
+  is_first = false
+  first_value = value
+}
+
+return value - first_value</equation>
+  </snippet>
+  <snippet name="yaw_from_quaternion" language="JS">
+   <global>// source: https://en.wikipedia.org/wiki/Conversion_between_quaternions_and_Euler_angles
+
+function quaternionToYaw(x, y, z, w)
+{
+  // yaw (z-axis rotation)
+  t1 = 2.0 * (w * z + x * y);
+  t2 = 1.0 - 2.0 * (y * y + z * z);
+  yaw = Math.atan2(t1, t2);
+
+  return yaw
+}</global>
+   <equation>return quaternionToYaw(x, y, z, w);</equation>
+  </snippet>
+ </snippets>
  <!-- - - - - - - - - - - - - - - -->
 </root>
 
